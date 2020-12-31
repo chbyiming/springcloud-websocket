@@ -1,0 +1,28 @@
+#必须使用 yml 格式配置文件，转发 socket 才会生效
+spring:
+  cloud:
+    gateway:
+#      #网关跨域配置
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowCredentials: true
+#            allowedOrigins: "*"
+#            allowedMethods: "*"
+#            allowedHeaders: "*"
+      #路由转发
+      routes:
+        #转发web请求
+        - id: customize-web
+          #lb 代表从注册中心获取 serverId 来做负载请求
+          uri: lb://client
+          predicates:
+            - Path=/client/websocket/web/socket/info/**
+           #如果需要加访问前缀，转发是需要去掉；前缀加一层，StripPrefix 值+1
+#          filters:
+#            - StripPrefix=1
+        #转发websocket
+        - id: customize-websocket
+          uri: lb:ws://client
+          predicates:
+            - Path=/client/websocket/web/socket/**
