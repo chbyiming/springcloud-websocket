@@ -24,8 +24,8 @@
 
 	 function connect() {
 			// websocket的连接地址，此值等于WebSocketMessageBrokerConfigurer中registry.addEndpoint("/websocket/web/socket").withSockJS()配置的地址；如果有项目前缀，需要加上
-			//var socket = new SockJS('http://192.168.1.95:8888/client/websocket/web/socket');//子项目websocket地址
-			var socket = new SockJS('http://192.168.1.95:19999/client/websocket/web/socket');//网关websocket代理地址
+			//var socket = new SockJS('http://192.168.1.95:8888/server/websocket/web/socket');//子项目websocket地址
+			var socket = new SockJS('http://192.168.1.95:19999/server/websocket/web/socket');//网关websocket代理地址
 			stompClient = Stomp.over(socket);
 			stompClient.connect({}, function(frame) {
 				connectioned = true;
