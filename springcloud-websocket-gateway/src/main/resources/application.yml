@@ -15,14 +15,14 @@ spring:
         #转发web请求
         - id: customize-web
           #lb 代表从注册中心获取 serverId 来做负载请求
-          uri: lb://client
+          uri: lb://server
           predicates:
-            - Path=/client/websocket/web/socket/info/**
+            - Path=/server/websocket/web/socket/info/**
            #如果需要加访问前缀，转发是需要去掉；前缀加一层，StripPrefix 值+1
 #          filters:
 #            - StripPrefix=1
         #转发websocket
         - id: customize-websocket
-          uri: lb:ws://client
+          uri: lb:ws://server
           predicates:
-            - Path=/client/websocket/web/socket/**
+            - Path=/server/websocket/web/socket/**
